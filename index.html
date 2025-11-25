@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Signup</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* Animated gradient background */
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(-45deg, #6a11cb, #2575fc, #ff6a00, #ff0080);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        /* Card styling */
+        .auth-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .input-group-text {
+            background: transparent;
+            border-right: none;
+        }
+
+        .form-control {
+            border-left: none;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+        }
+
+        .btn-primary {
+            background: #2575fc;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #1b5fd1;
+        }
+
+        .toggle-link {
+            cursor: pointer;
+            color: #2575fc;
+            text-decoration: none;
+        }
+
+        .toggle-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-card">
+        <h3 class="text-center mb-4" id="form-title">Login</h3>
+
+        <form id="auth-form">
+            <!-- Username -->
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fa fa-user"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Enter username" required>
+                </div>
+            </div>
+
+            <!-- Email (only for signup) -->
+            <div class="mb-3 d-none" id="email-group">
+                <label class="form-label">Email</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fa fa-envelope"></i>
+                    </span>
+                    <input type="email" class="form-control" placeholder="Enter email">
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fa fa-lock"></i>
+                    </span>
+                    <input type="password" class="form-control" placeholder="Enter password" required>
+                </div>
+            </div>
+
+            <!-- Confirm Password (only for signup) -->
+            <div class="mb-3 d-none" id="confirm-password-group">
+                <label class="form-label">Confirm Password</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fa fa-lock"></i>
+                    </span>
+                    <input type="password" class="form-control" placeholder="Confirm password">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mb-3" id="submit-btn">Login</button>
+
+            <p class="text-center">
+                <span id="toggle-text">Don't have an account? </span>
+                <span class="toggle-link" id="toggle-form">Sign up</span>
+            </p>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const toggleFormLink = document.getElementById('toggle-form');
+        const formTitle = document.getElementById('form-title');
+        const submitBtn = document.getElementById('submit-btn');
+        const toggleText = document.getElementById('toggle-text');
+        const emailGroup = document.getElementById('email-group');
+        const confirmPasswordGroup = document.getElementById('confirm-password-group');
+
+        let isLogin = true;
+
+        toggleFormLink.addEventListener('click', () => {
+            isLogin = !isLogin;
+
+            if (isLogin) {
+                formTitle.textContent = "Login";
+                submitBtn.textContent = "Login";
+                toggleText.textContent = "Don't have an account? ";
+                toggleFormLink.textContent = "Sign up";
+                emailGroup.classList.add('d-none');
+                confirmPasswordGroup.classList.add('d-none');
+            } else {
+                formTitle.textContent = "Sign Up";
+                submitBtn.textContent = "Sign Up";
+                toggleText.textContent = "Already have an account? ";
+                toggleFormLink.textContent = "Login";
+                emailGroup.classList.remove('d-none');
+                confirmPasswordGroup.classList.remove('d-none');
+            }
+        });
+    </script>
+</body>
+</html>
